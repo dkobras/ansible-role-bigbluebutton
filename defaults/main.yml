@@ -252,10 +252,7 @@ bbb_firewall_ufw:
       - rule: allow
         port: 16384:32768
         proto: udp
-    default:
-      - rule: allow
-        port: "{{ bbb_ssh_port }}"
-        proto: tcp
+    default: []
 
 # https://pypi.org/project/docker-compose/#history
 bbb_docker_compose_version: 1.29.2
