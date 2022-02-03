@@ -4,13 +4,6 @@
     pkg: ufw
     state: present
 
-- name: Activate ufw
-  # For the setup process we first allow everything by policy,
-  # after allowing ssh the default policy will be set to deny.
-  community.general.ufw:
-    state: enabled
-    policy: allow
-
 - name: Set logging
   community.general.ufw:
     logging: 'on'
@@ -84,6 +77,6 @@
   when:
     - "'policy' in bbb_firewall_ufw"
 
-- name: Reload bbb_firewall_ufw
+- name: Activate and reload ufw firewall
   community.general.ufw:
-    state: reloaded
+    state: enabled
