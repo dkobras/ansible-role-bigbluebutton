@@ -23,7 +23,7 @@
 
 - name: Generate or renew certificate with certbot
   become: true
-  command: certbot certonly -d {{ bbb_hostname }} --agree-tos -n --nginx --email {{ bbb_letsencrypt_email }}
+  command: "certbot certonly -d {{ bbb_hostname }} --agree-tos -n --nginx --email {{ bbb_letsencrypt_email }} --deploy-hook '/bin/systemctl reload nginx'"
   register: result
   changed_when: "'new certificate deployed' in result.stdout"
   notify: reload nginx
